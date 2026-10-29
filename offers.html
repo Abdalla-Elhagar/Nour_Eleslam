@@ -78,6 +78,14 @@
             gap: 25px;
         }
 
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            direction: ltr;
+            flex-shrink: 0;
+        }
+
         .brand-logo {
             display: flex;
             align-items: center;
@@ -208,6 +216,8 @@
             padding: 46px 0 52px;
             background: linear-gradient(112deg, #e87916 0%, #a84312 52%, #29251d 100%);
             color: var(--white);
+            transition: opacity 1s ease-in-out, visibility 0s linear .6s;
+
         }
 
         .offers-hero::after {
@@ -231,6 +241,7 @@
         .hero-slide {
             position: absolute;
             inset: 0;
+            z-index: 0;
             display: grid;
             grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
             align-items: center;
@@ -238,13 +249,14 @@
             padding: 18px 0 42px;
             opacity: 0;
             visibility: hidden;
-            transition: opacity .45s ease;
+            transition: opacity .6s ease-in-out, visibility 0s linear .6s;
         }
 
         .hero-slide.active {
-            position: relative;
+            z-index: 1;
             opacity: 1;
             visibility: visible;
+            transition-delay: 0s;
         }
 
         .hero-content {
@@ -702,6 +714,148 @@
             font-size: 34px;
         }
 
+        .main-footer {
+            padding: 60px 0 0;
+            background: #292929;
+            color: var(--white);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr .8fr 1fr 1fr;
+            gap: 38px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand .brand-icon {
+            background: var(--gold);
+        }
+
+        .footer-brand h2 {
+            margin: 0 0 5px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .footer-brand span {
+            color: #d7b968;
+            font-size: 12px;
+        }
+
+        .footer-description {
+            max-width: 330px;
+            color: #c0c0c0;
+            font-size: 13px;
+            line-height: 2.2;
+        }
+
+        .footer-title {
+            position: relative;
+            margin: 0 0 24px;
+            padding-bottom: 13px;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .footer-title::after {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 42px;
+            height: 3px;
+            border-radius: 10px;
+            background: var(--gold);
+            content: "";
+        }
+
+        .footer-links {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #c6c6c6;
+            font-size: 13px;
+            transition: .3s;
+        }
+
+        .footer-links a i {
+            color: var(--gold);
+            font-size: 11px;
+        }
+
+        .footer-links a:hover {
+            transform: translateX(-4px);
+            color: #e5c66f;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 17px;
+            color: #c6c6c6;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .footer-contact-item i {
+            width: 16px;
+            margin-top: 5px;
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .social-links a {
+            display: flex;
+            width: 39px;
+            height: 39px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #555;
+            border-radius: 9px;
+            color: var(--white);
+            transition: .3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            border-color: var(--gold);
+            background: var(--gold);
+        }
+
+        .footer-bottom {
+            margin-top: 45px;
+            padding: 22px 0;
+            border-top: 1px solid #444;
+            color: #bcbcbc;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .footer-bottom span {
+            color: #dfbd63;
+        }
+
         .toast-message {
             position: fixed;
             z-index: 10;
@@ -747,21 +901,34 @@
         }
 
         @media (max-width: 991px) {
-            .navbar-container {
-                flex-wrap: wrap;
+            .footer-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 32px;
             }
 
-            .mobile-toggle {
-                display: block;
-                order: 2;
+            .navbar-container {
+                flex-wrap: wrap;
             }
 
             .brand-logo {
                 order: 1;
             }
 
+            .navbar-actions {
+                order: 2;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
             .nav-contact {
-                order: 3;
+                font-size: 0;
+            }
+
+            .nav-contact i,
+            .nav-contact .cart-count {
+                font-size: 13px;
             }
 
             .navbar-links {
@@ -808,6 +975,109 @@
                 width: min(100% - 30px, 560px);
             }
 
+            .main-navbar {
+                padding: 8px 0;
+            }
+
+            .navbar-container {
+                gap: 8px;
+            }
+
+            .brand-logo {
+                gap: 8px;
+            }
+
+            .brand-icon {
+                width: 46px;
+                height: 46px;
+                border-radius: 10px;
+            }
+
+            .brand-text h3 {
+                font-size: 15px;
+            }
+
+            .brand-text span {
+                font-size: 10px;
+                letter-spacing: 0;
+            }
+
+            .nav-contact,
+            .mobile-toggle {
+                display: inline-flex;
+                width: 42px;
+                height: 42px;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                box-shadow: 0 3px 10px rgba(41, 37, 29, .06);
+            }
+
+            .nav-contact {
+                position: relative;
+                gap: 0;
+                background: var(--primary-light);
+                color: var(--primary-dark);
+            }
+
+            .nav-contact i {
+                font-size: 16px;
+            }
+
+            .nav-contact .cart-count {
+                position: absolute;
+                top: -5px;
+                inset-inline-start: -5px;
+                min-width: 17px;
+                height: 17px;
+                padding: 0 4px;
+                font-size: 10px;
+            }
+
+            .mobile-toggle {
+                background: var(--gold);
+                color: var(--white);
+                font-size: 19px;
+                transition: .2s ease;
+            }
+
+            .mobile-toggle:hover,
+            .mobile-toggle:focus-visible {
+                background: var(--gold-dark);
+                color: var(--white);
+            }
+
+            .navbar-links {
+                gap: 2px;
+                margin-top: 6px;
+                padding: 8px;
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                background: var(--white);
+                box-shadow: 0 12px 24px rgba(41, 37, 29, .1);
+            }
+
+            .navbar-links a {
+                padding: 11px 12px;
+                border: 0;
+                border-radius: 9px;
+            }
+
+            .navbar-links a.active {
+                background: var(--primary-light);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .main-footer {
+                padding-top: 42px;
+            }
+
             .hero-image {
                 height: 190px;
                 border-radius: 20px;
@@ -821,7 +1091,7 @@
 
             .hero-track {
                 min-height: 680px;
-                padding-inline: 38px;
+                padding-inline: 30px;
             }
 
             .offers-hero {
@@ -879,7 +1149,7 @@
             }
 
             .product-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-template-columns: 1fr;
                 gap: 12px;
             }
 
@@ -912,12 +1182,9 @@
                 width: min(100% - 24px, 340px);
             }
 
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-
             .hero-track {
                 min-height: 710px;
+                padding-inline: 26px;
             }
 
             .hero-bottom {
@@ -928,8 +1195,18 @@
                 flex-wrap: wrap;
             }
 
+            .countdown-unit {
+                min-width: 48px;
+                padding-inline: 7px;
+            }
+
             .countdown-label {
                 flex-basis: 100%;
+            }
+
+            .hero-arrow {
+                width: 30px;
+                height: 30px;
             }
 
             .product-image {
@@ -954,6 +1231,7 @@
             *::after {
                 scroll-behavior: auto !important;
                 transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
             }
         }
     </style>
@@ -973,11 +1251,6 @@
                     </div>
                 </a>
 
-                <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="فتح القائمة"
-                    aria-expanded="false">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
-                </button>
-
                 <div class="navbar-links" id="navbarLinks">
                     <a href="index.html#home">الصفحة الرئيسية</a>
                     <a href="products.html#products">منتجاتنا</a>
@@ -985,11 +1258,18 @@
                     <a href="index.html#contact">تواصل معنا</a>
                 </div>
 
-                <button class="nav-contact" id="offersCartButton" type="button"
-                    aria-label="عدد المنتجات المضافة للسلة: 0">
-                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-                    السلة <span class="cart-count" id="cartCount">0</span>
-                </button>
+                <div class="navbar-actions">
+                    <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="فتح القائمة"
+                        aria-expanded="false">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </button>
+
+                    <button class="nav-contact" id="offersCartButton" type="button"
+                        aria-label="عدد المنتجات المضافة للسلة: 0">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                        السلة <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -997,12 +1277,12 @@
     <main>
         <section class="offers-hero" aria-labelledby="offersTitle">
             <div class="container">
-                <div class="hero-track" id="heroSlider" aria-roledescription="carousel"
-                    aria-label="العروض الموسمية">
+                <div class="hero-track" id="heroSlider" aria-roledescription="carousel" aria-label="العروض الموسمية">
                     <article class="hero-slide active" aria-roledescription="slide" aria-label="١ من ٣"
                         aria-hidden="false">
                         <div class="hero-content">
-                            <span class="hero-kicker"><i class="fas fa-sparkles" aria-hidden="true"></i> عروض موسمية لفترة محدودة</span>
+                            <span class="hero-kicker"><i class="fas fa-sparkles" aria-hidden="true"></i> عروض موسمية
+                                لفترة محدودة</span>
                             <h1 id="offersTitle">أقوى عروض<br><span>الموسم</span></h1>
                             <p class="hero-description">
                                 اكتشف أسعارًا مميزة على منتجات الصحة والعناية اليومية قبل انتهاء عروض الأسبوع.
@@ -1012,10 +1292,14 @@
                             <div class="hero-bottom">
                                 <div class="countdown" role="timer" aria-label="الوقت المتبقي لانتهاء عروض الأسبوع">
                                     <span class="countdown-label">ينتهي في:</span>
-                                    <div class="countdown-unit"><strong data-time="days">00</strong><span>يوم</span></div>
-                                    <div class="countdown-unit"><strong data-time="hours">00</strong><span>ساعة</span></div>
-                                    <div class="countdown-unit"><strong data-time="minutes">00</strong><span>دقيقة</span></div>
-                                    <div class="countdown-unit"><strong data-time="seconds">00</strong><span>ثانية</span></div>
+                                    <div class="countdown-unit"><strong data-time="days">00</strong><span>يوم</span>
+                                    </div>
+                                    <div class="countdown-unit"><strong data-time="hours">00</strong><span>ساعة</span>
+                                    </div>
+                                    <div class="countdown-unit"><strong
+                                            data-time="minutes">00</strong><span>دقيقة</span></div>
+                                    <div class="countdown-unit"><strong
+                                            data-time="seconds">00</strong><span>ثانية</span></div>
                                 </div>
                                 <a class="hero-button" href="#offersProducts">
                                     تسوق الآن <i class="fas fa-arrow-left" aria-hidden="true"></i>
@@ -1040,10 +1324,14 @@
                             <div class="hero-bottom">
                                 <div class="countdown" role="timer" aria-label="الوقت المتبقي لانتهاء عروض الأسبوع">
                                     <span class="countdown-label">ينتهي في:</span>
-                                    <div class="countdown-unit"><strong data-time="days">00</strong><span>يوم</span></div>
-                                    <div class="countdown-unit"><strong data-time="hours">00</strong><span>ساعة</span></div>
-                                    <div class="countdown-unit"><strong data-time="minutes">00</strong><span>دقيقة</span></div>
-                                    <div class="countdown-unit"><strong data-time="seconds">00</strong><span>ثانية</span></div>
+                                    <div class="countdown-unit"><strong data-time="days">00</strong><span>يوم</span>
+                                    </div>
+                                    <div class="countdown-unit"><strong data-time="hours">00</strong><span>ساعة</span>
+                                    </div>
+                                    <div class="countdown-unit"><strong
+                                            data-time="minutes">00</strong><span>دقيقة</span></div>
+                                    <div class="countdown-unit"><strong
+                                            data-time="seconds">00</strong><span>ثانية</span></div>
                                 </div>
                                 <a class="hero-button" href="#offersProducts">
                                     تسوق الآن <i class="fas fa-arrow-left" aria-hidden="true"></i>
@@ -1058,7 +1346,8 @@
 
                     <article class="hero-slide" aria-roledescription="slide" aria-label="٣ من ٣" aria-hidden="true">
                         <div class="hero-content">
-                            <span class="hero-kicker"><i class="fas fa-gift" aria-hidden="true"></i> عروض لا تفوتك</span>
+                            <span class="hero-kicker"><i class="fas fa-gift" aria-hidden="true"></i> عروض لا
+                                تفوتك</span>
                             <h2>دلّل نفسك<br><span>بعروض مميزة</span></h2>
                             <p class="hero-description">
                                 اكتشف منتجات العناية والتغذية بأسعار خاصة، وتسوّق ما يناسبك بسهولة.
@@ -1068,10 +1357,14 @@
                             <div class="hero-bottom">
                                 <div class="countdown" role="timer" aria-label="الوقت المتبقي لانتهاء عروض الأسبوع">
                                     <span class="countdown-label">ينتهي في:</span>
-                                    <div class="countdown-unit"><strong data-time="days">00</strong><span>يوم</span></div>
-                                    <div class="countdown-unit"><strong data-time="hours">00</strong><span>ساعة</span></div>
-                                    <div class="countdown-unit"><strong data-time="minutes">00</strong><span>دقيقة</span></div>
-                                    <div class="countdown-unit"><strong data-time="seconds">00</strong><span>ثانية</span></div>
+                                    <div class="countdown-unit"><strong data-time="days">00</strong><span>يوم</span>
+                                    </div>
+                                    <div class="countdown-unit"><strong data-time="hours">00</strong><span>ساعة</span>
+                                    </div>
+                                    <div class="countdown-unit"><strong
+                                            data-time="minutes">00</strong><span>دقيقة</span></div>
+                                    <div class="countdown-unit"><strong
+                                            data-time="seconds">00</strong><span>ثانية</span></div>
                                 </div>
                                 <a class="hero-button" href="#offersProducts">
                                     تسوق الآن <i class="fas fa-arrow-left" aria-hidden="true"></i>
@@ -1094,7 +1387,8 @@
                     </div>
 
                     <div class="hero-dots" role="group" aria-label="اختيار العرض">
-                        <button class="hero-dot active" type="button" aria-label="العرض الأول" aria-current="true"></button>
+                        <button class="hero-dot active" type="button" aria-label="العرض الأول"
+                            aria-current="true"></button>
                         <button class="hero-dot" type="button" aria-label="العرض الثاني" aria-current="false"></button>
                         <button class="hero-dot" type="button" aria-label="العرض الثالث" aria-current="false"></button>
                     </div>
@@ -1114,15 +1408,18 @@
                 <div class="promo-list" role="group" aria-label="تصفية العروض">
                     <button class="promo-card active" type="button" data-filter="all" aria-pressed="true">
                         <span class="promo-icon"><i class="fas fa-tags" aria-hidden="true"></i></span>
-                        <span class="promo-copy"><strong>تخفيضات الموسم</strong><span>تصفح جميع المنتجات المخفضة</span></span>
+                        <span class="promo-copy"><strong>تخفيضات الموسم</strong><span>تصفح جميع المنتجات
+                                المخفضة</span></span>
                     </button>
                     <button class="promo-card" type="button" data-filter="vitamins" aria-pressed="false">
                         <span class="promo-icon"><i class="fas fa-capsules" aria-hidden="true"></i></span>
-                        <span class="promo-copy"><strong>عروض الفيتامينات</strong><span>خصومات على المكملات الغذائية</span></span>
+                        <span class="promo-copy"><strong>عروض الفيتامينات</strong><span>خصومات على المكملات
+                                الغذائية</span></span>
                     </button>
                     <button class="promo-card" type="button" data-filter="weekly" aria-pressed="false">
                         <span class="promo-icon"><i class="fas fa-bolt" aria-hidden="true"></i></span>
-                        <span class="promo-copy"><strong>صفقات الأسبوع</strong><span>أسعار خاصة لفترة محدودة</span></span>
+                        <span class="promo-copy"><strong>صفقات الأسبوع</strong><span>أسعار خاصة لفترة
+                                محدودة</span></span>
                     </button>
                 </div>
             </div>
@@ -1319,6 +1616,80 @@
         </section>
     </main>
 
+    <footer class="main-footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <section class="footer-column" aria-label="عن المعرض">
+                    <div class="footer-brand">
+                        <div class="brand-icon" aria-hidden="true">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div>
+                            <h2>معرض نور الاسلام</h2>
+                            <span>اختيارك الأفضل دائماً</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        نسعى لتقديم تجربة تسوق مميزة تجمع بين جودة المنتجات والأسعار
+                        المناسبة والاهتمام باحتياجات عملائنا. ثقتكم هي أساس نجاحنا.
+                    </p>
+                    <div class="social-links" aria-label="تابعنا على وسائل التواصل">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="إنستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="تيك توك"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </section>
+
+                <section class="footer-column" aria-labelledby="footerQuickLinks">
+                    <h2 class="footer-title" id="footerQuickLinks">روابط سريعة</h2>
+                    <ul class="footer-links">
+                        <li><a href="index.html#home"><i class="fas fa-chevron-left"></i> الصفحة الرئيسية</a></li>
+                        <li><a href="products.html#products"><i class="fas fa-chevron-left"></i> منتجاتنا</a></li>
+                        <li><a href="offers.html"><i class="fas fa-chevron-left"></i> عروضنا</a></li>
+                        <li><a href="index.html#about"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+                    </ul>
+                </section>
+
+                <section class="footer-column" aria-labelledby="footerWhyUs">
+                    <h2 class="footer-title" id="footerWhyUs">لماذا نور الاسلام!</h2>
+                    <ul class="footer-links">
+                        <li><a href="index.html#about"><i class="fas fa-chevron-left"></i> جودة المنتجات</a></li>
+                        <li><a href="index.html#about"><i class="fas fa-chevron-left"></i> أسعار مناسبة</a></li>
+                        <li><a href="index.html#contact"><i class="fas fa-chevron-left"></i> خدمة العملاء</a></li>
+                        <li><a href="offers.html"><i class="fas fa-chevron-left"></i> أحدث العروض</a></li>
+                    </ul>
+                </section>
+
+                <section class="footer-column" aria-labelledby="footerContact">
+                    <h2 class="footer-title" id="footerContact">بيانات التواصل</h2>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <span>أضف عنوان معرض نور الاسلام هنا</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                        <span>أضف رقم الهاتف هنا</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        <span>تواصل معنا لمعرفة مواعيد العمل</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <span>أضف البريد الإلكتروني هنا</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                جميع الحقوق محفوظة © <span>معرض نور الاسلام</span> <span id="currentYear"></span>
+            </div>
+        </div>
+    </footer>
+
     <div class="toast-message" id="toastMessage" role="status" aria-live="polite"></div>
 
     <script>
@@ -1408,7 +1779,7 @@
                 heroSlider.matches(':hover') || heroSlider.contains(document.activeElement)) {
                 return;
             }
-            carouselTimer = setInterval(() => showSlide(currentSlide + 1), 6000);
+            carouselTimer = setInterval(() => showSlide(currentSlide + 1), 5000);
         }
 
         heroSlider.addEventListener('mouseenter', stopCarousel);
@@ -1493,6 +1864,7 @@
 
         filterOffers('all');
         updateCountdown();
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
         startCarousel();
         setInterval(updateCountdown, 1000);
     </script>
